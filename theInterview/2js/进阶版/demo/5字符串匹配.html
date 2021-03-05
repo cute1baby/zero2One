@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 方案1：正则
+// function myIndexof(T){
+//     const reg = new RegExp(T),
+//         s = reg.exec(this)
+//     return s === null ? -1 : s.index
+// }
+
+
+// 方案2：循环
+function myIndexof(T){
+    let lens = this.length,
+            ts = T.length,
+            rIndex = -1
+    if(lens < ts){
+        return -1
+    }
+    for (let i = 0; i <= lens - ts; i++) {
+        // substr第二个参数是表示截取的长度，
+        // slice和subtring第二个参数表示的是截取的末尾位置
+        const val = this.substr(i, ts)
+        // 找到该字符串之后退出循环
+        if(val === T){
+            rIndex = i
+            break;
+        }
+    }
+    return rIndex
+}
+
+
+String.prototype.myIndexof = myIndexof
+let str = 'zhufengpeixun',
+    t = 'pei'
+console.log(str.myIndexof(t))
+</script>
+</body>
+</html>

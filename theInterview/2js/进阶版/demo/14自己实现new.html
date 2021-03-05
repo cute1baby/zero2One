@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function _new(Fn, ...args){
+    let obj = {}
+    obj.__proto__ = Fn.prototype
+    // let obj = Object.create(Fn.prototype)
+    Fn.call(obj, ...args)
+    return obj
+}
+
+function Fn(name){
+    this.name = name
+}
+const fn = _new(Fn, '李钟')
+console.log(fn.name)
+console.log(fn instanceof Fn)
+
+
+</script>
+</body>
+</html>

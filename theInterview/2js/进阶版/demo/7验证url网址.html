@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/**
+ * 协议：可显示，可不显示
+ * 域名：一定显示
+ * 文件路径：可显示，可不显示
+ * hash：可显示，可不显示
+ * */
+// let str = 'http://www.zhufengpeixun.cn/index.html?lx=1&from=wx#video';
+// let str = 'http://www.zhufengpeixun.cn/';
+let str = 'www.zhufengpeixun.cn/index.html#video';
+let reg = /^(?:(http|https|ftp):\/\/)?((?:[\w-]+\.)+[a-z0-9]+)((?:\/[^/?#]*)+)?(\?[^#]+)?(#.+)?$/i;
+console.log(reg.exec(str))
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">box</div>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box">1box1</div>
+<script>
+/**
+ * 实现一个$attr(name, value)遍历
+ * 属性为name
+ * 值为value的元素集合
+ * 
+ * 例如：let ary = $attr('class', 'box') => 获取页面中所有class为box的元素
+ * */
+function $attr(property, value){
+    // 获取当前页面的所有标签
+    let elements = document.getElementsByTagName('*'),
+        arr = [];
+    // 将类数组转化为数组
+    elements = Array.from(elements)
+    elements.forEach(item => {
+        // 存储的是当前项的property属性值
+        let itemValue = item.getAttribute(property)
+        // 对class的包含关系进行单独处理
+        if(property === 'class'){
+            // 匹配两边有边界的情况
+            new RegExp('\\b'+ value +"\\b").test(itemValue) ? arr.push(item) : null;
+            return
+        }
+        // 一般情况的处理
+        if(itemValue === value){
+            arr.push(item)
+        }
+    })
+    return arr
+}
+
+console.log($attr('class', 'box'))
+</script>
+</body>
+</html>

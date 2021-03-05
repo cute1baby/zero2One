@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 任务75（2-8）
+
+function Foo(){
+    Foo.a = function(){
+        console.log(1)
+    }
+    this.a = function(){
+        console.log(2)
+    }
+}
+
+Foo.prototype.a = function(){
+    console.log(3)
+}
+
+Foo.a = function(){
+    console.log(4)
+}
+
+Foo.a() // 4
+let obj = new Foo() // obj可以调用原型上的方法，同时执行了Foo()，将Foo.a和obj.a的方法覆盖了
+obj.a() // 2
+Foo.a() // 1
+</script>
+</body>
+</html>

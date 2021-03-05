@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/**
+ * 面向过程的写法
+ * */
+let add = x => x+ 10;
+let multiply = y => y * 10;
+console.log(multiply(add(10)))  // 20
+
+/**
+ * compose函数写法
+ * */
+let compose = (f, g) => {
+    return function(x){
+        return f(g(x))
+    }
+}
+let calculate = compose(multiply, add);
+console.log(calculate(10));
+</script>
+</body>
+</html>

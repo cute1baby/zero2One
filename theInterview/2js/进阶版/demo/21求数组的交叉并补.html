@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/**
+ * 给定两个数组，写一个方法来计算他们的交集  思考题：交叉并补
+ * */
+let nums1 = [12, 34,52, 678,42, 36,32,65]
+let nums2 = [36,42, 29, 70]
+let jiaoArr = []
+nums1.forEach((item,index) => {
+    const n = nums2.indexOf(item);
+    if(n > -1){
+        jiaoArr.push(item);
+        // 这两部是为了去重，避免一个数组中出现两次的项也添加进去
+        nums1.splice(index, 1, null)
+        nums2.splice(n, 1, null)
+    }
+})
+console.log('交集', jiaoArr)
+</script>
+</body>
+</html>

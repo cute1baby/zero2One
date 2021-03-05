@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    1: 50,
+    4: 20,
+    7: 11
+}
+// 方法1
+let newArr1 = new Array(12).fill(null).map((item,index) => {
+    return obj[index+1] || null
+})
+console.log(newArr1)
+
+// 方法2
+let arr2 = new Array(12).fill(null)
+Object.keys(obj).forEach((item) => {
+    arr2[item-1] = obj[item];
+})
+console.log(arr2)
+
+// 方法3，先转变成(obj.length+1)的类数组，然后再遍历
+obj.length = 13
+let arr3 = Array.from(obj).slice(1).map(item => {
+    return typeof item ==='undefined' ? null : item
+})
+console.log(arr3)
+</script>
+</body>
+</html>

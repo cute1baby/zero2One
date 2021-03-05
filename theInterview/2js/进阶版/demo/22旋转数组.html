@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 旋转数组
+// 给定一个数组，将数组中的元素项右移动k个位置，其中k是非负数
+// 输入：[1,2,3,4,5,6,7]和k=3
+// 输出：[5,6,7, 1,2,3,4]
+function rotate(k){
+    // return this.slice(-k).concat(this.slice(0, this.length-k))
+    // 或者
+    // return [...this.splice(this.length-k), ...this]
+    
+    // 或者
+    new Array(k).fill(null).forEach(_ => this.unshift(this.pop()));
+    return this;
+}
+Array.prototype.rotate = rotate;
+
+let arr = [1,2,3,4,5,6,7]
+console.log(arr.rotate(3))
+</script>
+</body>
+</html>

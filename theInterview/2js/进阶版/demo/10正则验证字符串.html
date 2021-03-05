@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/***
+ * 编写一条正则，用来验证此规则：一个6-16位的字符串，必须同时包含有大小写字母和数字。
+ * 这里使用了负向预查
+ * 
+ * 纯字母不行，纯数字不行
+ * 小写字母和数字不行，大写字母和数字也不行
+ * 只能是大小写字母都有，并且有数字
+ * */
+let reg = /(?!^[a-zA-Z]+$)(?!^[0-9]+$)(?!^[a-z0-9]+$)(?!^[A-Z0-9]+$)^[a-zA-Z0-9]{6,16}$/;
+
+/**
+ * 写一个正则：数字、字母和下划线，1-10位，必须有下划线
+ * 这里使用了负向预查
+ * 
+ * 不能只是字母和数字
+ * 
+ * 首先确定以(任意字符)什么开头，以(1到10位)什么结尾
+ * 必须包含下划线
+ * */
+let reg1 = /(?!^[a-zA-Z0-9]+$)^\w{1,10}$/
+
+/**
+ * 写一个正则：数字、字母和下划线，1-10位，必须有下划线
+ * 这里使用了正向预查
+ * 
+ * 必须包含下划线
+ * */
+let reg2 = /(?=_)\w/
+
+</script>
+</body>
+</html>

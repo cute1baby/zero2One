@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html2canvas page</title>
+</head>
+<body>
+<p class="pDom">测试一下html转图片的生成</p>
+<a id="download"></a>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+function cvsImg(fn, type) {
+    let node = document.querySelector('.pDom');
+    let w = node.offsetWidth // 获取DOM宽度
+    let h = node.offsetHeight // 获取DOM高度
+    let scale // 定义放大倍数
+    if (window.devicePixelRatio) {
+        scale = window.devicePixelRatio
+    } else {
+        scale = 2
+    }
+
+    let _this = this
+    html2canvas(node, {
+        backgroundColor: '#999',
+        scale: scale,
+        width: w,
+        height: h,
+        logging: false,
+        useCORS: true,
+    }).then(canvas => {
+        let base = canvas.toDataURL("image/jpge", 1)
+        fn(base, type, _this)
+    });
+}
+
+cvsImg(function(base, type, that){
+    let download = document.querySelector('#download');
+    download.setAttribute('href', base);
+    download.setAttribute('download', '截图图片');
+    download.click()
+    // window.location.href = base
+    // 弹出数据
+    console.log(base, type, that)
+}, 1)
+</script>
+</body>
+</html>

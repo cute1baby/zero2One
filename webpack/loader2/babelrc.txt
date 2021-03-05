@@ -1,0 +1,4 @@
+// .babelrc（貌似使用.babelrc并不管用，而是配置在module/rules的方式可行）
+// {
+//     "presets": ["@babel/preset-env"]
+// }

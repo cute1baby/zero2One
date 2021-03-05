@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>头条面试题</title>
+</head>
+<body>
+<script>
+/*
+* 输入一个正数N，输出所有和为N的连续正数序列
+* 例如：输入15
+* 结果：[[1,2,3,4,5],[4,5,6],[7,8]]
+*/
+function fn(n){
+    let arr = []
+    const middleVal = Math.ceil(n / 2)
+    for (let i = 1; i < middleVal; i++) {
+        for (let j = 2; ;j++) {
+            // 等差数列求和
+            const total = (i+(i+j-1))*j/2
+            if(total > n){
+                break
+            }
+            if(total === n){
+                arr.push(getRightArr(i, j))
+                break
+            }
+        }
+        
+    }
+
+    /* 获取符合条件的数组 */
+    function getRightArr(i, j){
+        let newArr = new Array(j).fill(null)
+        newArr[0] = i
+        newArr = newArr.map((_, index) => {
+            if(!_){
+                return i+index
+            }else{
+                return _
+            }
+        })
+        return newArr
+    }
+    return arr
+}
+console.log(fn(15))
+</script>
+</body>
+</html>

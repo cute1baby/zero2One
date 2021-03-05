@@ -1,0 +1,50 @@
+"scripts": {
+    "eslint": "npx eslint ./src",  // 校验文件
+    "fix": "npx eslint ./src --fix"    // 修复文件
+}
+
+注意要安装和配置:
+babel-loader@8.0.4
+@babel/core@7.2.0
+@babel/preset-env@7.2.0
+
+/////////////和babel-eslint@10.0.1////
+和eslint-loader@4.0.2
+
+在webpack.config.js做如下配置
+```
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: 'babel-loader'
+        },
+        {
+            test: /\.js$/,
+            enforce: 'pre',  // 设置执行顺序，pre优先处理，post 最后处理
+            exclude: /node_modules/,
+            use: 'eslint-loader'
+        }
+    ]
+}
+```
+
+【注意：】在loader4中无法设置eslint是因为插件安装有问题，视频教程中建议安装的是babel-eslint@10.0.1，但是
+装了之后并不生效。我在这个例子安装了eslint-loader@4.0.2插件，并在webpack.config.js做了`eslint-loader`的配置
+就成功了。
+
+默认是配置eslint的推荐功能
+```
+"extends": "eslint:recommended", // 继承了eslint推荐的规则
+```
+
+
+
+- 推荐安装一款比较火的一款规范插件（感觉也不好用，还是试用默认的吧）：
+```
+npm i eslint-config-airbnb  
+
+然后在.eslintrc.js文件做如下配置
+"extends": "airbnb",
+```

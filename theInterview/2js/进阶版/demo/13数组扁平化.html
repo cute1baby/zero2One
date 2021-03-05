@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = [
+    [1,2,3],
+    [3,4,5,5],
+    [6,7,8,9,[11,2,34,[14]], 10]
+]
+
+// 方法1: flat
+const s1 = arr.flat(Infinity)
+console.log([...new Set(s1)].sort((a,b) => a-b))
+
+// 方法2：toString,不管数组有多少级，都会变成逗号分隔的字符串
+const s2 = arr.toString().split(',').map(_ => Number(_))
+console.log([...new Set(s2)].sort((a,b) => a-b))
+
+// 方法3：JSON.stringify
+const s3 = JSON.stringify(arr).replace(/(\[|\])/g, '').split(',').map(_ => Number(_))
+console.log([...new Set(s3)].sort((a,b) => a-b))
+
+// 方法4：some
+let arr1 = JSON.parse(JSON.stringify(arr))
+while(arr1.some(_ => Array.isArray(_))){
+    arr1 = [].concat(...arr1)
+}
+console.log([...new Set(arr1)].sort((a,b) => a-b));
+
+
+// 方法5：push和递归，跟some类似
+(function(){
+    let s4 = []
+    function fArray(arr){
+        for(let i=0;i<arr.length;i++){
+            if(Array.isArray(arr[i])){
+                fArray(arr[i])
+            }else{
+                s4.push(arr[i])
+            }
+        }
+    }
+    fArray(arr)
+    console.log([...new Set(s4)].sort((a,b) => a-b))
+}())
+
+
+</script>
+</body>
+</html>

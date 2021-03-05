@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+// 测试：这种情况输出多少？
+// var b = 10
+// (function b(){
+//     b = 20
+//     console.log(b);  // 函数b
+// })()
+// console.log(b)  // 10
+
+
+// 测试：如果想输出20,10,该怎么修改？
+// 方案: 通过在内部声明或者(传参)的方式，可以实现变量b只在函数内部，不会影响全局的b
+var b = 10;
+(function b(){
+    var b = 20
+    console.log(b);  // 20
+})()
+console.log(b)  // 10
+</script>
+</body>
+</html>

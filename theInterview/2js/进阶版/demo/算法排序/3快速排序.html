@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let ary = [1,56,34,8,10];
+function quick(ary){
+    // 4、当数组只有一项时，停止递归
+    if(ary.length <= 1){
+        return ary
+    }
+    // 1、获取中间那一项下标和值
+    let middleIndex = Math.floor(ary.length / 2),
+        middleValue = ary.splice(middleIndex, 1)[0],
+        leftArr = [],
+        rightArr = [];
+    
+    // 2、遍历数组并且与中间相进行比较，比中间相小的放左边，比中间相大的放右边
+    for (let i = 0; i < ary.length; i++) {
+        const element = ary[i];
+        element < middleValue ? leftArr.push(element) : rightArr.push(element)
+    }
+    // 3、将左边、中间和右边数组递归拼接返回
+    return quick(leftArr).concat(middleValue, quick(rightArr))
+}
+console.log(quick(ary))
+</script>
+</body>
+</html>

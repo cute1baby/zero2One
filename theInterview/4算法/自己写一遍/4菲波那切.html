@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菲波那切</title>
+</head>
+<body>
+<script>
+// let arr = [1, 1, 2, 3, 5, 8, 13...]
+/**
+ * 1、输入数组下标，获得第n项的值
+ * 规律是第(n-2)项 + (n-1)项是当前项的值。
+ * */ 
+// function febo1(n){
+//     if(n <= 1){
+//         return 1
+//     }
+//     return febo1(n-2) + febo1(n-1)
+// }
+// console.log(febo1(6))
+
+
+/**
+ * 2、输入数组下标，获得第n项的值
+ * 循环要创建的个数，然后第(n-2)项 + (n-1)项值相加并入数组中
+*/
+// function febo2(n){
+//     let arr = [1, 1]
+//     // 接下来要创建多少个数(下标与个数的区别)
+//     let index = (n - 2) + 1
+//     let arg = null
+//     while(index > 0){
+//         arg = arr[arr.length-2] + arr[arr.length-1]
+//         arr.push(arg)
+//         index--
+//     }
+//     return arg
+// }
+// console.log(febo2(6))
+
+/**
+ * 
+ * return得到当前的值，则直接退出函数
+ */
+function febo3(n){
+    function febonaq(n, cur, next){
+        if(n === 0){
+            return cur
+        }else{
+            return febonaq(n-1, next, cur + next)
+        }
+    }
+    return febonaq(n, 1, 1)
+}
+console.log(febo3(6))
+</script>
+
+</body>
+</html>

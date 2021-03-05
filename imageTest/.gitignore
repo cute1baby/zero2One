@@ -1,0 +1,6 @@
+node_modules/
+reference/
+merged.png
+text-background.png
+*.log
+*.log.*

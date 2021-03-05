@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.box{
+    width: 200px;
+    height: 200px;
+    background: gray;
+    margin: 20px auto;
+}
+</style>
+<body>
+<button class="btn">点击测试防抖</button>
+<div class="box"></div>
+<script>
+// 防抖
+function debounce(fn, delay){
+    let time = null;
+    return function(...args){
+        if(time){
+            clearInterval(time)
+        }
+        time = setTimeout(() => {
+            console.log(this)
+            fn(args)
+        }, delay)
+    }
+}
+
+// 节流
+function throttle(fn, delay){
+    let flag = true;
+    return function(...args){
+        if(!flag) return;
+        flag = false;
+        setTimeout(() => {
+            console.log(this)
+            flag = true;
+            fn(args);
+        }, delay)
+    }
+}
+const box = document.querySelector('.box');
+const btn = document.querySelector('.btn');
+const fn = () => {
+    console.log(111)
+}
+box.addEventListener('mouseover', debounce(fn, 1000))
+btn.addEventListener('click', throttle(fn, 1000))
+// box.addEventListener('mouseover', fn)
+</script>
+</body>
+</html>

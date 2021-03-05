@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let ary1 = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2']
+let ary2 = ['A', 'B', 'C', 'D']
+// 合并之后的数组为：['A1', 'A2', 'A', 'B1', 'B2', 'B', 'C1', 'C2', 'C','D1', 'D2', 'D']
+
+// localeCompare以前没用过，用来排序的
+let cloneAry2 = ary2.map(_ => _+'Zhu')
+let newArr = ary1.concat(cloneAry2)
+newArr = newArr.sort((a, b) => a.localeCompare(b)).map(_ => _.replace('Zhu', ''))
+console.log(newArr)
+
+
+
+// 如果要不修改位置的情况下，这样合并，应该怎么计算？
+let ary3 = [ 'C1', 'C2', 'D1', 'D2', 'A1', 'A2', 'B1', 'B2',]
+let ary4 = ['A', 'B', 'C', 'D']
+// 合并之后的数组为：['C1', 'C2', 'C','D1', 'D2', 'D', 'A1', 'A2', 'A', 'B1', 'B2', 'B']
+let n= 0
+for (let i = 0; i < ary4.length; i++) {
+    const item2 = ary4[i];
+    for (let j = 0; j < ary3.length; j++) {
+        const item1 = ary3[j];
+        if(item1.includes(item2)){
+            // 如果在ary3中遍历查找到包含当前这一项的，就把这一项的下标记录下来
+            n = j
+        }
+    }
+    // 在n+1项的前面插入item2
+    ary3.splice(n+1, 0, item2)
+}
+console.log(ary3)
+</script>
+</body>
+</html>

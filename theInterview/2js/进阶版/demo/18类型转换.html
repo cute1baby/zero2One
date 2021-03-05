@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 如何实现下面的等式成立？
+// var a=?
+// if(a==1 && a==2 && a==3){
+//     console.log(1)
+// }
+
+// 原理是：用自己私有的toString替换原型上的toString方法
+
+// 方法1
+// var a = {
+//     n: 0,
+//     toString: function(){
+//         return ++this.n
+//     }
+// }
+
+// 方法2：
+// var a = [1,2,3]
+// a.toString = a.shift
+
+/**
+ * es6新增的方法
+ * String.fromCharCode(122) <=> 'z'.charCodeAt()
+ * Array.from()
+ * Array.isArray()
+ * Object.create()
+ * Object.defineProperty()
+ * 
+ * */
+
+
+// 方法3
+Object.defineProperty(window, 'a', {
+    get(){
+        // this => window.a
+        return this.value?++this.value : this.value = 1
+    }
+})
+
+if(a==1 && a==2 && a==3){
+    console.log(1)
+}
+</script>
+</body>
+</html>

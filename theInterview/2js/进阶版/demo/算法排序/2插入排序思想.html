@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let ary = [1,56,34,8,10];
+// 插入排序
+function insert(ary){
+    // 新建一个数组，并插入数组的第一项
+    let handle = [ary[0]]
+    // 从原数组中开始摸牌
+    for(let i=1;i<ary.length;i++){
+        let A = ary[i]; // 新摸得牌
+        // 遍历手中的牌，并从后往前进行比较
+        for(var j=handle.length-1;j>=0;j--){
+            let B = handle[j]   // 手里的牌
+            // 如果手里摸到的牌比之前那一项的牌大，则插入到那个值后面
+            if(A > B){
+                handle.splice(j+1, 0, A)
+                // 确定之后就不用继续比较了
+                break;
+            }
+            // 如果一直排到第一项都比所有的小，那这个值就是排在首位
+            if(A===0){
+                handle.unshift(A)
+            }
+        }
+    }
+    return handle
+}
+console.log(insert(ary))
+</script>
+</body>
+</html>

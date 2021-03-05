@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/**
+ * demo1：对象属性会默认转化为字符串
+ **/
+var a = {},b = '123', c = 123
+a[b] = 'b'
+a[c] = 'c'
+console.log(a[b])  // c
+
+/**
+ * demo2：Symbol是es6中新增的数据类型
+ * Symbol('123') === Symbol('123')  // false
+ **/
+var a = {},b = Symbol('123'), c = Symbol(123)
+a[b] = 'b'
+a[c] = 'c'
+console.log(a[b])  // b
+
+/**
+ * demo3：Object.prototype.toSting()转化成"[object Object]"
+ **/
+ var a = {},b = {'a': 1}, c = {'b': 2}
+a[b] = 'b'
+a[c] = 'c'
+console.log(a[b])  // c
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 通过返回值控制退出函数。
+// function each(arr, callback){
+//     for (let i = 0; i < arr.length; i++) {
+//         const element = arr[i];
+//         let flag = callback.call(arr, element, i)
+//         if(flag===false){
+//             break;
+//         }
+//     }
+// }
+
+// each([10, 20, 30], function(item, index){
+//     if(index > 1){
+//         return false
+//     }
+//     console.log(this, item, index)
+// })
+
+
+// 完成课后题目
+Array.prototype.each = function(callback, obj=window){
+    let newArr = []
+    for (let i = 0; i < this.length; i++) {
+        const ele = this[i];
+        const flag = callback.call(obj, ele, i)
+        if(flag === false){
+            const l = this.slice(i, this.length)
+            newArr = newArr.concat(l)
+            break;
+        }else{
+            newArr.push(flag)
+        }
+    }
+    return newArr
+}
+
+let arr = [10, 20, 30, 'AA', 40],
+    obj = {}
+    arr = arr.each(function(item, index){
+        // this => obj,如果第二个参数不传指向window
+        if(isNaN(item)){
+            return false
+        }
+        return item * 10
+    }, obj)
+console.log(arr)
+
+
+
+// 仿照replace
+String.prototype.replace = function(reg, callback){
+    var newStr = this
+    var d = null
+    while((d = reg.exec(newStr)) !== null){
+        var flag = callback(d)
+        newStr = newStr.split(d[0]).join(flag)
+    }
+    return newStr
+}
+let str = 'zhufeng2019zhufeng2019';
+str = str.replace(/zhufeng/g, function(...arg){
+	return '@'
+})
+console.log(str)
+</script>
+</body>
+</html>

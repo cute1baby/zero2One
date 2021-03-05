@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 使用replace直接替换，而不用for循环 
+let str = 'zhufeng的li老师是大帅哥，HAHAHAHA'
+str = str.replace(/[a-zA-Z]/g, content => {
+    return content.toUpperCase() === content ? content.toLowerCase() : content.toUpperCase()
+})
+console.log(str)
+</script>
+</body>
+</html>

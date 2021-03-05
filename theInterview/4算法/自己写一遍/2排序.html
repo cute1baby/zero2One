@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排序</title>
+</head>
+<body>
+<script>
+let arr = [1, 3, 3, 7, 39, 48, 7, 50]
+// let arr = [1, 2, 3, 4, 5]
+/**
+ * 1、冒泡排序，每循环一次都能确定当前循环最大的值(4项只需要比3次)
+ * 第一次循环确定比较的次数
+ * 第二次循环当前次要循环的数量
+*/
+// for (let i = 0; i < arr.length-1; i++) {
+//     for (let j = 0; j < arr.length -1 -i; j++) {
+//         if(arr[j] > arr[j+1]){
+//             [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+//         }
+//     }
+// }
+// console.log(arr)
+
+/***
+ * 2、插入排序，有点类似打扑克插入牌的逻辑
+ * 第一轮是循环原数组的牌
+ * 第二轮是循环自己手里的牌
+ */
+// let newArr = [arr[0]]  // 先往自己容器里放一张牌
+// for (let i = 1; i < arr.length; i++) {
+//      const a = arr[i]  // 往原数组中抽一张牌
+//     for (let j = newArr.length - 1; j >= 0; j--) {
+//         const b = newArr[j]
+//         // 如果比某个数字大就插如到其后，并跳出该循环
+//         if(a > b){
+//             newArr.splice(j+1, 0, a)
+//             break;
+//         }
+//         // 如果比所有的数据都小，就插入到最前面
+//         if(j === 0){
+//             newArr.unshift(a)
+//         }
+//     }
+// }
+// console.log(newArr)
+
+/***
+ * 3、快速排序，取数组中间的数，比其小的放左边，比其大的放右边，
+ * 一直这样递归，直到无法比较为止，再把左边和右边的数组合并起来。
+ */
+function quick(arr){
+    // 当只剩下一个或者所有值都相等时
+    if(arr.length <= 1 || arr.every(_ => _ == arr[0])){
+        return arr
+    }
+    let middleIndex = parseInt(arr.length / 2),
+        middleVal = arr.splice(middleIndex, 1)[0],  //要取下标为0，不然是数组
+        leftArr = [],
+        rightArr = []
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] < middleVal ? leftArr.push(arr[i] ) : rightArr.push(arr[i])
+    }
+    return quick(leftArr).concat(middleVal, quick(rightArr))
+}
+console.log(quick(arr))
+</script>
+</body>
+</html>

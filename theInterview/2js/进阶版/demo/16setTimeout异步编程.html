@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 如何修改能输出0-4
+// for (var i = 0; i < 5; i++) {
+//     setTimeout(() => {
+//         console.log(i)
+//     }, 1000)
+// }
+
+
+// 方法1：使用let块作用域
+for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+        console.log('方法1:', i)
+    }, 1000)
+}
+
+// 方法2：使用闭包
+// for (var i = 0; i < 5; i++) {
+//     (function(j){
+//         setTimeout(() => {
+//             console.log('方法2:', j)
+//         }, 1000)
+//     })(i)
+// }
+// 或者这样写
+for (var i = 0; i < 5; i++) {
+    setTimeout((function(j){
+        return () => {
+            console.log('方法2:', j)
+        }
+    })(i), 1000)
+}
+
+// 方法3：使用bind的预先处理机制：在循环的时候就把每次执行函数需要输出的结果，预先传给函数即可
+function fn(j){
+    console.log('方法3:', j)
+}
+for (var i = 0; i < 5; i++) {
+    setTimeout(fn.bind(null, i), 1000)
+}
+</script>
+</body>
+</html>
