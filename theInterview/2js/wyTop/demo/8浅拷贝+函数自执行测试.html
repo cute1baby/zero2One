@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+(function(){
+    debugger;
+    var root = this;
+    var _ = {};
+    root._ = _;
+
+    _.reverse = (s) => {
+        return s.split('').reverse().join('');
+    }
+})() 
+
+// 为什么这里就可以使用_？
+/**
+ * 因为闭包里的this是window,然后window._ = {...}，相当于间接的给window上添加属性；
+在离开这个函数之后root就会被销毁，但是window上的属性还在
+ * */
+var a = _.reverse('hello world');
+console.log(a);
+console.log( _);
+
+
+var mixin = {
+    run(){
+        console.log(`${this.name}我可以跑步`);
+    },
+    sing(){
+        console.log(`${this.name}我可以唱歌`);
+    }
+}
+
+class Student {
+    constructor(name){
+        this.name = name;
+    }
+}
+
+// 为什么使用Student.prototype？
+// 不用new Stu()，而是用原型上的方法。让所有实例都可以共享同一个方法，而不用重写几遍，节省了内存空间。
+Object.assign(Student.prototype, mixin)
+let s = new Student('斗罗大陆');
+s.run();
+</script>
+</body>
+</html>
