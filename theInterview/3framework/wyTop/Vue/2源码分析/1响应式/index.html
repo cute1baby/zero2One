@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+class Dep{
+    constructor(){
+        this.subs = [];
+    }
+    depend(){
+        if(active){
+            this.subs.push(active)
+        }
+    }
+    notify(){
+        this.subs.forEach(_ => _());
+    }
+}
+
+let x, y, active;
+const f = value => 100 * value + 100;
+const watch = cb => {
+    active = cb;
+    active();
+    // 一次执行只能有一个active
+    active = null;
+}
+
+let ref = initValue => {
+    let value = initValue;
+    let dep = new Dep()
+    return Object.defineProperty({}, 'value', {
+        get(){
+            // 依赖收集
+            dep.depend();
+            return value;
+        },
+        set(newVal){
+            value = newVal;
+            // 通知变化
+            dep.notify();
+        }
+    })
+}
+
+x = ref(1); //x是一个绑定了value属性的对象
+// active是这里的匿名函数，可以看做是Vue中的页面渲染方法
+watch(() => {
+    y = f(x.value); //这一步会执行get方法
+    console.log(y)
+})
+
+x.value = 2;    // 这两步会执行set方法
+x.value = 5;
+</script>
+</body>
+</html>
