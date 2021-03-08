@@ -7,10 +7,23 @@ const resolve = function(...paths) {
 
 
 Itgw(resolve('./images/temp.png'), {
+    // logo: {
+    //     size: '144,74',
+    //     position: '+118+20',
+    //     style: {
+    //         borderRadius: '6px'
+    //     },
+    //     default: resolve('./images/logo.png')
+    // },
     logo: {
-        size: '144,74',
-        position: '+118+20',
-        default: resolve('./images/logo.png')
+        size: '86,86',
+        position: '+144+10',
+        style: {
+            borderRadius: '50%',
+            border: '1px solid #F8A564',
+            boxShadow: '0 0 6px #D9A278'
+        },
+        default: resolve('./images/avatar.png')
     },
     banner: {
         size: '240,200',
