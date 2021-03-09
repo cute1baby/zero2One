@@ -20,4 +20,6 @@ app.use(bodyParser({}))
 // 将路由挂载到app上
 app.use(router.routes())
 
-app.listen(3000)
+app.listen(3000, () => {
+    console.log('服务启动成功....')
+})

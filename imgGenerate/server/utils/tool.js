@@ -14,7 +14,7 @@ const paramsMissingFun = (msg) => {
  * 请求失败: 900
  * @returns 
  */
-const failFun = (msg) => {
+const failFun = (errorData, msg) => {
   return {
     code: 900,
     message: msg || '请求失败',
